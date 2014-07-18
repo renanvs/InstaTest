@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CaptionModel" representedClassName="CaptionModel" syncable="YES">
+        <attribute name="createdTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="publication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PublicationModel" inverseName="caption" inverseEntity="PublicationModel" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserModel" inverseName="caption" inverseEntity="UserModel" syncable="YES"/>
+    </entity>
+    <entity name="CommentModel" representedClassName="CommentModel" syncable="YES">
+        <attribute name="createdTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="comments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CommentsModel" inverseName="list" inverseEntity="CommentsModel" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserModel" inverseName="comment" inverseEntity="UserModel" syncable="YES"/>
+    </entity>
+    <entity name="CommentsModel" representedClassName="CommentsModel" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="list" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommentModel" inverseName="comments" inverseEntity="CommentModel" syncable="YES"/>
+        <relationship name="publication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PublicationModel" inverseName="comments" inverseEntity="PublicationModel" syncable="YES"/>
+    </entity>
+    <entity name="ConnectedUserModel" representedClassName="ConnectedUserModel" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profile_picture" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ImageModel" representedClassName="ImageModel" syncable="YES">
+        <attribute name="lowHeight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lowResUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lowWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="standardResolutionHeight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="standardResolutionUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="standardResolutionWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="thumbnailHeight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="thumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailWidth" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="publication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PublicationModel" inverseName="image" inverseEntity="PublicationModel" syncable="YES"/>
+    </entity>
+    <entity name="PublicationModel" representedClassName="PublicationModel" syncable="YES">
+        <attribute name="createdTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="likesCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="caption" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CaptionModel" inverseName="publication" inverseEntity="CaptionModel" syncable="YES"/>
+        <relationship name="comments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CommentsModel" inverseName="publication" inverseEntity="CommentsModel" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ImageModel" inverseName="publication" inverseEntity="ImageModel" syncable="YES"/>
+    </entity>
+    <entity name="RequestModel" representedClassName="RequestModel" syncable="YES">
+        <attribute name="remain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserModel" representedClassName="UserModel" syncable="YES">
+        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profilePicture" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="caption" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CaptionModel" inverseName="user" inverseEntity="CaptionModel" syncable="YES"/>
+        <relationship name="comment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CommentModel" inverseName="user" inverseEntity="CommentModel" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ConnectedUserModel" positionX="-306" positionY="-126" width="128" height="133"/>
+        <element name="RequestModel" positionX="-470" positionY="-102" width="128" height="75"/>
+        <element name="PublicationModel" positionX="-576" positionY="140" width="128" height="148"/>
+        <element name="CaptionModel" positionX="-342" positionY="45" width="128" height="103"/>
+        <element name="UserModel" positionX="-27" positionY="-45" width="128" height="133"/>
+        <element name="CommentsModel" positionX="-182" positionY="182" width="128" height="88"/>
+        <element name="CommentModel" positionX="259" positionY="236" width="128" height="103"/>
+        <element name="ImageModel" positionX="-236" positionY="374" width="128" height="193"/>
+    </elements>
+</model>
